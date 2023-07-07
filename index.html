@@ -1,653 +1,564 @@
 <!DOCTYPE html>
 <link rel="shortcut icon" href="https://www.easylifemusic.com/wp-content/themes/easylifemusic2/icons/favicon-32x32.png"
-    type="image/png" sizes="32x32">
+  type="image/png" sizes="32x32">
 
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <script>
-        var namMember = [
-            "palm tree days",
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    var namMember = [
+      "palm tree days",
 
-            "MAYBE IN ANOTHER LIFE...",
+      "MAYBE IN ANOTHER LIFE...",
 
-            "GROWING PAINS",
+      "GROWING PAINS",
 
-            "BASEMENT",
+      "BASEMENT",
 
-            "DEAR MISS HOLLOWAY",
+      "DEAR MISS HOLLOWAY",
 
-            "BUBBLE WRAP",
+      "BUBBLE WRAP",
 
-            "OTT",
+      "OTT",
 
-            "MEMORY LOSS",
+      "MEMORY LOSS",
 
-            "SILVER LININGS",
+      "SILVER LININGS",
 
-            "CROCODILE TEARS",
+      "CROCODILE TEARS",
 
-            "MORAL SUPPORT",
+      "MORAL SUPPORT",
 
-            "CALLING IN SICK",
+      "CALLING IN SICK",
 
-            "BEESWAX",
+      "BEESWAX",
 
-            "BUGGIN'",
+      "BUGGIN'",
 
-            "ANTIFREEZE",
+      "ANTIFREEZE",
 
-            "FORTUNE COOKIE",
+      "FORTUNE COOKIE",
 
-            "nightmares",
+      "nightmares",
 
-            "a message to myself",
+      "a message to myself",
 
-            "have a great day",
+      "have a great day",
 
-            "ocean view",
+      "ocean view",
 
-            "skeletons",
+      "skeletons",
 
-            "daydreams",
+      "daydreams",
 
-            "life's a beach (interlude)",
+      "life's a beach (interlude)",
 
-            "living strange",
+      "living strange",
 
-            "compliments",
+      "compliments",
 
-            "lifeboat",
+      "lifeboat",
 
-            "homesickness",
+      "homesickness",
 
-            "music to walk home to",
+      "music to walk home to",
 
-            "pop tarts",
+      "pop tarts",
 
-            "peanut butter",
+      "peanut butter",
 
-            "petty crime",
+      "petty crime",
 
-            "dead celebrities",
+      "dead celebrities",
 
-            "7 magpies",
+      "7 magpies",
 
-            "nice guys",
+      "nice guys",
 
-            "sangria",
+      "sangria",
 
-            "ls6",
+      "ls6",
 
-            "earth",
+      "earth",
 
-            "spiders",
+      "spiders",
 
-            "basics",
+      "basics",
 
-            "houseplants",
+      "houseplants",
 
-            "spaghetti hoops",
+      "spaghetti hoops",
 
-            "mercury retrograde",
+      "mercury retrograde",
 
-            "sunday",
+      "sunday",
 
-            "wet weekend",
+      "wet weekend",
 
-            "afters",
+      "afters",
 
-            "jealousy",
+      "jealousy",
 
-            "ojpl",
+      "ojpl",
 
-            "temporary love part 1",
+      "temporary love part 1",
 
-            "temporary love part 2",
+      "temporary love part 2",
 
-            "frank",
+      "frank",
 
-            "0520",
+      "0520",
 
-            "pockets",
+      "pockets",
 
-            "ice cream",
+      "ice cream",
 
-            "lust",
+      "lust",
 
-            "silverado",
+      "silverado",
 
-            "slow motion",
-        ];
+      "slow motion",
+    ];
 
-        //*********************************************************
+    //*********************************************************
 
-        var lstMember = [];
+    var lstMember = [];
 
-        var parent = [];
+    var parent = [];
 
-        var equal = [];
+    var equal = [];
 
-        var rec = [];
+    var rec = [];
 
-        var cmp1, cmp2;
+    var cmp1, cmp2;
 
-        var head1, head2;
+    var head1, head2;
 
-        var nrec;
+    var nrec;
 
-        var numQuestion;
+    var numQuestion;
 
-        var totalSize;
+    var totalSize;
 
-        var finishSize;
+    var finishSize;
 
-        var finishFlag;
+    var finishFlag;
 
-        //The initialization of the variable+++++++++++++++++++++++++++++++++++++++++++++
+    //The initialization of the variable+++++++++++++++++++++++++++++++++++++++++++++
 
-        function initList() {
-            var n = 0;
+    function initList() {
+      var n = 0;
 
-            var mid;
+      var mid;
 
-            var i;
+      var i;
 
-            //The sequence that you should sort
+      //The sequence that you should sort
 
-            lstMember[n] = [];
+      lstMember[n] = [];
 
-            for (i = 0; i < namMember.length; i++) {
-                lstMember[n][i] = i;
-            }
+      for (i = 0; i < namMember.length; i++) {
+        lstMember[n][i] = i;
+      }
 
-            parent[n] = -1;
+      parent[n] = -1;
 
-            totalSize = 0;
+      totalSize = 0;
 
-            n++;
+      n++;
 
-            for (i = 0; i < lstMember.length; i++) {
-                //And element divides it in two/more than two
+      for (i = 0; i < lstMember.length; i++) {
+        //And element divides it in two/more than two
 
-                //Increase divided sequence of last in first member
+        //Increase divided sequence of last in first member
 
-                if (lstMember[i].length >= 2) {
-                    mid = Math.ceil(lstMember[i].length / 2);
+        if (lstMember[i].length >= 2) {
+          mid = Math.ceil(lstMember[i].length / 2);
 
-                    lstMember[n] = [];
+          lstMember[n] = [];
 
-                    lstMember[n] = lstMember[i].slice(0, mid);
+          lstMember[n] = lstMember[i].slice(0, mid);
 
-                    totalSize += lstMember[n].length;
+          totalSize += lstMember[n].length;
 
-                    parent[n] = i;
+          parent[n] = i;
 
-                    n++;
+          n++;
 
-                    lstMember[n] = [];
+          lstMember[n] = [];
 
-                    lstMember[n] = lstMember[i].slice(mid, lstMember[i].length);
+          lstMember[n] = lstMember[i].slice(mid, lstMember[i].length);
 
-                    totalSize += lstMember[n].length;
+          totalSize += lstMember[n].length;
 
-                    parent[n] = i;
+          parent[n] = i;
 
-                    n++;
-                }
-            }
+          n++;
+        }
+      }
 
-            //Preserve this sequence
+      //Preserve this sequence
 
-            for (i = 0; i < namMember.length; i++) {
-                rec[i] = 0;
-            }
+      for (i = 0; i < namMember.length; i++) {
+        rec[i] = 0;
+      }
 
-            nrec = 0;
+      nrec = 0;
 
-            //List that keeps your results
+      //List that keeps your results
 
-            //Value of link initial
+      //Value of link initial
 
-            // Value of link initial
+      // Value of link initial
 
-            for (i = 0; i <= namMember.length; i++) {
-                equal[i] = -1;
-            }
+      for (i = 0; i <= namMember.length; i++) {
+        equal[i] = -1;
+      }
 
-            cmp1 = lstMember.length - 2;
+      cmp1 = lstMember.length - 2;
 
-            cmp2 = lstMember.length - 1;
+      cmp2 = lstMember.length - 1;
 
-            head1 = 0;
+      head1 = 0;
 
-            head2 = 0;
+      head2 = 0;
 
-            numQuestion = 1;
+      numQuestion = 1;
 
-            finishSize = 0;
+      finishSize = 0;
 
-            finishFlag = 0;
+      finishFlag = 0;
+    }
+
+    //&#12522;&#12473;&#12488;&#12398;&#12477;&#12540;&#12488;+++++++++++++++++++++++++++++++++++++++++++
+
+    //flag&#65306;Don't know characters
+
+    // -1&#65306;Chose the left
+
+    // 0&#65306;Tie
+
+    // 1&#65306;Chose the right
+
+    function sortList(flag) {
+      var i;
+
+      var str;
+
+      //rec preservation
+
+      if (flag < 0) {
+        rec[nrec] = lstMember[cmp1][head1];
+
+        head1++;
+
+        nrec++;
+
+        finishSize++;
+
+        while (equal[rec[nrec - 1]] != -1) {
+          rec[nrec] = lstMember[cmp1][head1];
+
+          head1++;
+
+          nrec++;
+
+          finishSize++;
+        }
+      } else if (flag > 0) {
+        rec[nrec] = lstMember[cmp2][head2];
+
+        head2++;
+
+        nrec++;
+
+        finishSize++;
+
+        while (equal[rec[nrec - 1]] != -1) {
+          rec[nrec] = lstMember[cmp2][head2];
+
+          head2++;
+
+          nrec++;
+
+          finishSize++;
+        }
+      } else {
+        rec[nrec] = lstMember[cmp1][head1];
+
+        head1++;
+
+        nrec++;
+
+        finishSize++;
+
+        while (equal[rec[nrec - 1]] != -1) {
+          rec[nrec] = lstMember[cmp1][head1];
+
+          head1++;
+
+          nrec++;
+
+          finishSize++;
         }
 
-        //&#12522;&#12473;&#12488;&#12398;&#12477;&#12540;&#12488;+++++++++++++++++++++++++++++++++++++++++++
+        equal[rec[nrec - 1]] = lstMember[cmp2][head2];
 
-        //flag&#65306;Don't know characters
+        rec[nrec] = lstMember[cmp2][head2];
 
-        // -1&#65306;Chose the left
+        head2++;
 
-        // 0&#65306;Tie
+        nrec++;
 
-        // 1&#65306;Chose the right
+        finishSize++;
 
-        function sortList(flag) {
-            var i;
+        while (equal[rec[nrec - 1]] != -1) {
+          rec[nrec] = lstMember[cmp2][head2];
 
-            var str;
+          head2++;
 
-            //rec preservation
+          nrec++;
 
-            if (flag < 0) {
-                rec[nrec] = lstMember[cmp1][head1];
+          finishSize++;
+        }
+      }
 
-                head1++;
+      //Processing after finishing with one list
 
-                nrec++;
+      if (head1 < lstMember[cmp1].length && head2 == lstMember[cmp2].length) {
+        //List the remainder of cmp2 copies, list cmp1 copies when finished scanning
 
-                finishSize++;
+        while (head1 < lstMember[cmp1].length) {
+          rec[nrec] = lstMember[cmp1][head1];
 
-                while (equal[rec[nrec - 1]] != -1) {
-                    rec[nrec] = lstMember[cmp1][head1];
+          head1++;
 
-                    head1++;
+          nrec++;
 
-                    nrec++;
+          finishSize++;
+        }
+      } else if (
+        head1 == lstMember[cmp1].length &&
+        head2 < lstMember[cmp2].length
+      ) {
+        //List the remainder of cmp1 copies, list cmp2 copies when finished scanning
 
-                    finishSize++;
-                }
-            } else if (flag > 0) {
-                rec[nrec] = lstMember[cmp2][head2];
+        while (head2 < lstMember[cmp2].length) {
+          rec[nrec] = lstMember[cmp2][head2];
 
-                head2++;
+          head2++;
 
-                nrec++;
+          nrec++;
 
-                finishSize++;
+          finishSize++;
+        }
+      }
 
-                while (equal[rec[nrec - 1]] != -1) {
-                    rec[nrec] = lstMember[cmp2][head2];
+      //When it arrives at the end of both lists
 
-                    head2++;
+      //Update a pro list
 
-                    nrec++;
-
-                    finishSize++;
-                }
-            } else {
-                rec[nrec] = lstMember[cmp1][head1];
-
-                head1++;
-
-                nrec++;
-
-                finishSize++;
-
-                while (equal[rec[nrec - 1]] != -1) {
-                    rec[nrec] = lstMember[cmp1][head1];
-
-                    head1++;
-
-                    nrec++;
-
-                    finishSize++;
-                }
-
-                equal[rec[nrec - 1]] = lstMember[cmp2][head2];
-
-                rec[nrec] = lstMember[cmp2][head2];
-
-                head2++;
-
-                nrec++;
-
-                finishSize++;
-
-                while (equal[rec[nrec - 1]] != -1) {
-                    rec[nrec] = lstMember[cmp2][head2];
-
-                    head2++;
-
-                    nrec++;
-
-                    finishSize++;
-                }
-            }
-
-            //Processing after finishing with one list
-
-            if (head1 < lstMember[cmp1].length && head2 == lstMember[cmp2].length) {
-                //List the remainder of cmp2 copies, list cmp1 copies when finished scanning
-
-                while (head1 < lstMember[cmp1].length) {
-                    rec[nrec] = lstMember[cmp1][head1];
-
-                    head1++;
-
-                    nrec++;
-
-                    finishSize++;
-                }
-            } else if (
-                head1 == lstMember[cmp1].length &&
-                head2 < lstMember[cmp2].length
-            ) {
-                //List the remainder of cmp1 copies, list cmp2 copies when finished scanning
-
-                while (head2 < lstMember[cmp2].length) {
-                    rec[nrec] = lstMember[cmp2][head2];
-
-                    head2++;
-
-                    nrec++;
-
-                    finishSize++;
-                }
-            }
-
-            //When it arrives at the end of both lists
-
-            //Update a pro list
-
-            if (head1 == lstMember[cmp1].length && head2 == lstMember[cmp2].length) {
-                for (i = 0; i < lstMember[cmp1].length + lstMember[cmp2].length; i++) {
-                    lstMember[parent[cmp1]][i] = rec[i];
-                }
-
-                lstMember.pop();
-
-                lstMember.pop();
-
-                cmp1 = cmp1 - 2;
-
-                cmp2 = cmp2 - 2;
-
-                head1 = 0;
-
-                head2 = 0;
-
-                //Initialize the rec before performing the new comparison
-
-                if (head1 == 0 && head2 == 0) {
-                    for (i = 0; i < namMember.length; i++) {
-                        rec[i] = 0;
-                    }
-
-                    nrec = 0;
-                }
-            }
-
-            if (cmp1 < 0) {
-                str =
-                    "battle #" +
-                    (numQuestion - 1) +
-                    "<br>" +
-                    Math.floor((finishSize * 100) / totalSize) +
-                    "% sorted.";
-
-                document.getElementById("battleNumber").innerHTML = str;
-
-                showResult();
-
-                finishFlag = 1;
-            } else {
-                showImage();
-            }
+      if (head1 == lstMember[cmp1].length && head2 == lstMember[cmp2].length) {
+        for (i = 0; i < lstMember[cmp1].length + lstMember[cmp2].length; i++) {
+          lstMember[parent[cmp1]][i] = rec[i];
         }
 
-        //The results+++++++++++++++++++++++++++++++++++++++++++++++
+        lstMember.pop();
 
-        //&#38918;&#20301;=Rank/Grade/Position/Standing/Status
+        lstMember.pop();
 
-        //&#21517;&#21069;=Identification term
+        cmp1 = cmp1 - 2;
 
-        function showResult() {
-            var ranking = 1;
+        cmp2 = cmp2 - 2;
 
-            var sameRank = 1;
+        head1 = 0;
 
-            var str = "";
+        head2 = 0;
 
-            var i;
+        //Initialize the rec before performing the new comparison
 
-            str += '<p>your results are in! why not take a screenshot and share it in the <a href="https://discord.gg/easy-life">discord</a> :)</p>'
+        if (head1 == 0 && head2 == 0) {
+          for (i = 0; i < namMember.length; i++) {
+            rec[i] = 0;
+          }
 
-            str +=
-                '<table style="width:200px; font-size:18px; line-height:120%; margin-left:auto; margin-right:auto; border:1px solid #000; border-collapse:collapse" align="center">';
-
-            str +=
-                '<tr><td style="color:#ffffff; background-color:#e097d9; text-align:center;">rank</td><td style="color:#ffffff; background-color:#e097d9; text-align:center;">options</td></tr>';
-
-            for (i = 0; i < namMember.length; i++) {
-                str +=
-                    '<tr><td style="border:1px solid #000; text-align:center; padding-right:5px;">' +
-                    ranking +
-                    '</td><td style="border:1px solid #000; padding-left:5px;">' +
-                    namMember[lstMember[0][i]] +
-                    "</td></tr>";
-
-                if (i < namMember.length - 1) {
-                    if (equal[lstMember[0][i]] == lstMember[0][i + 1]) {
-                        sameRank++;
-                    } else {
-                        ranking += sameRank;
-
-                        sameRank = 1;
-                    }
-                }
-            }
-
-            str += "</table>";
-
-            document.getElementById("resultField").innerHTML = str;
+          nrec = 0;
         }
+      }
 
-        //Indicates two elements to compare+++++++++++++++++++++++++++++++++++
+      if (cmp1 < 0) {
+        str =
+          "battle #" +
+          (numQuestion - 1) +
+          "<br>" +
+          Math.floor((finishSize * 100) / totalSize) +
+          "% sorted.";
 
-        function showImage() {
-            var str0 =
-                "battle #" +
-                numQuestion +
-                "<br>" +
-                Math.floor((finishSize * 100) / totalSize) +
-                "% sorted.";
+        document.getElementById("battleNumber").innerHTML = str;
 
-            var str1 = "" + toNameFace(lstMember[cmp1][head1]);
+        showResult();
 
-            var str2 = "" + toNameFace(lstMember[cmp2][head2]);
+        finishFlag = 1;
+      } else {
+        showImage();
+      }
+    }
 
-            document.getElementById("battleNumber").innerHTML = str0;
+    //The results+++++++++++++++++++++++++++++++++++++++++++++++
 
-            document.getElementById("leftField").innerHTML = str1;
+    //&#38918;&#20301;=Rank/Grade/Position/Standing/Status
 
-            document.getElementById("rightField").innerHTML = str2;
+    //&#21517;&#21069;=Identification term
 
-            numQuestion++;
+    function showResult() {
+      var ranking = 1;
+
+      var sameRank = 1;
+
+      var str = "";
+
+      var i;
+
+      str += '<p>your results are in! why not take a screenshot and share it in the <a href="https://discord.gg/easy-life">discord</a> :)</p>'
+
+      str +=
+        '<table style="width:200px; font-size:18px; line-height:120%; margin-left:auto; margin-right:auto; border:1px solid #000; border-collapse:collapse" align="center">';
+
+      str +=
+        '<tr><td style="color:#ffffff; background-color:#e097d9; text-align:center;">rank</td><td style="color:#ffffff; background-color:#e097d9; text-align:center;">options</td></tr>';
+
+      for (i = 0; i < namMember.length; i++) {
+        str +=
+          '<tr><td style="border:1px solid #000; text-align:center; padding-right:5px;">' +
+          ranking +
+          '</td><td style="border:1px solid #000; padding-left:5px;">' +
+          namMember[lstMember[0][i]] +
+          "</td></tr>";
+
+        if (i < namMember.length - 1) {
+          if (equal[lstMember[0][i]] == lstMember[0][i + 1]) {
+            sameRank++;
+          } else {
+            ranking += sameRank;
+
+            sameRank = 1;
+          }
         }
+      }
 
-        //Convert numeric value into a name (emoticon)+++++++++++++++++++++++++++++++
+      str += "</table>";
 
-        function toNameFace(n) {
-            var str = namMember[n];
+      document.getElementById("resultField").innerHTML = str;
+    }
 
-            /*
-                   
-                  str += '<br />';
-                   
-                  switch(n) {
-                   
-                  //case -1 Because it is a sample, delete it
-                   
-                  case -1: str+=""; break;
-                   
-                  }*/
+    //Indicates two elements to compare+++++++++++++++++++++++++++++++++++
 
-            return str;
-        }
-    </script>
+    function showImage() {
+      var str0 =
+        "battle #" +
+        numQuestion +
+        "<br>" +
+        Math.floor((finishSize * 100) / totalSize) +
+        "% sorted.";
 
-    <style>
-        #mainTable {
-            font-size: 19px;
+      var str1 = "" + toNameFace(lstMember[cmp1][head1]);
 
-            font-family: "Times New Roman", serif;
+      var str2 = "" + toNameFace(lstMember[cmp2][head2]);
 
-            text-align: center;
+      document.getElementById("battleNumber").innerHTML = str0;
 
-            vertical-align: middle;
+      document.getElementById("leftField").innerHTML = str1;
 
-            width: 410px;
+      document.getElementById("rightField").innerHTML = str2;
 
-            margin-left: auto;
+      numQuestion++;
+    }
 
-            margin-right: auto;
+    //Convert numeric value into a name (emoticon)+++++++++++++++++++++++++++++++
 
-            border-collapse: separate;
+    function toNameFace(n) {
+      var str = namMember[n];
 
-            border-spacing: 10px 5px;
-        }
+      /*
 
-        #leftField {
-            width: 120px;
+            str += '<br />';
 
-            height: 150px;
+            switch(n) {
 
-            border: 1px solid #000;
+            //case -1 Because it is a sample, delete it
 
-            cursor: pointer;
-        }
+            case -1: str+=""; break;
 
-        #rightField {
-            width: 120px;
+            }*/
 
-            height: 150px;
+      return str;
+    }
+  </script>
 
-            border: 1px solid #000;
+  <link rel="stylesheet" type="text/css" href="https://easy-life-sorter.nox.group/styles.css" />
 
-            cursor: pointer;
-        }
-
-        .middleField {
-            width: 120px;
-
-            height: 70px;
-
-            border: 1px solid #000;
-
-            cursor: pointer;
-        }
-
-        a {
-            color: #e097d9;
-
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #8f8f8f;
-        }
-
-        body {
-            width: 600px;
-
-            margin: 0 auto;
-
-            font-family: "Times New Roman", erif;
-        }
-    </style>
-
-    <meta property="og:site_name" content="Easy Life Discord" />
-    <meta property="og:title" content="Easy Life Sorter" />
-    <meta property="og:url" content="https://easy-life-sorter.nox.group" />
-    <meta property="og:image" content="http://assets.tumblr.com/images/og/text_200.png" />
+  <meta property="og:site_name" content="Easy Life Discord" />
+  <meta property="og:title" content="Easy Life Sorter" />
+  <meta property="og:url" content="https://easy-life-sorter.nox.group" />
+  <meta property="og:image" content="https://easy-life-sorter.nox.group/og.jpg" />
 </head>
-<link href='http://fonts.googleapis.com/css?family=Josefin+Slab:600' rel='stylesheet' type='text/css'>
 
 <body text="#000000" bgcolor="#ffffff" link="#e097d9" vlink="#e097d9" alink="#79a2c9">
+  <p class="instructions">
+    <center><br /><br />
+      <b>Easy Life All Songs Sorter</b><br /><br>pick which song you like better in each battle to get an accurate
+      list of your<br />favorite songs.<br />note: hitting 'no opinion' or 'I like both' frequently will
+      negatively affect your results.<br /><br />
+    </center>
+  </p>
 
+  <table id="mainTable" align="center">
+    <tbody>
+      <tr>
+        <td id="battleNumber" colspan="3" style="padding-bottom: 10px;" style="text-align:center;"><b>battle
+            #1<br>0% sorted.</b></td>
+      </tr>
+      <tr>
+        <td id="leftField" onclick="if(finishFlag==0) sortList(-1);" rowspan="2" style="text-align:center;">
+        </td>
+        <td class="middleField" onclick="if(finishFlag==0) sortList(0);" style="text-align:center;">
+          I like both
+        </td>
+        <td id="rightField" onclick="if(finishFlag==0) sortList(1);" rowspan="2" style="text-align:center;">
+        </td>
+      </tr>
+      <tr>
+        <td class="middleField" onclick="if(finishFlag==0) sortList(0);" style="text-align:center;">
+          no opinion
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
+  <br><br>
 
-    <p class="instructions">
-        <center><br /><br />
-            <b>Easy Life All Songs Sorter</b><br /><br>pick which song you like better in each battle to get an accurate
-            list of your<br />favorite songs.<br />note: hitting 'no opinion' or 'I like both' frequently will
-            negatively affect your results.<br /><br />
-        </center>
+  <div id="resultField" style="text-align: center;">
 
+    <br>
 
+  </div>
 
-    </p>
-
-
-
-    <table id="mainTable" align="center">
-
-        <tbody>
-            <tr>
-
-                <td id="battleNumber" colspan="3" style="padding-bottom: 10px;" style="text-align:center;"><b>battle
-                        #1<br>0% sorted.</b></td>
-
-            </tr>
-
-            <tr>
-
-                <td id="leftField" onclick="if(finishFlag==0) sortList(-1);" rowspan="2" style="text-align:center;">
-                </td>
-
-                <td class="middleField" onclick="if(finishFlag==0) sortList(0);" style="text-align:center;">
-
-                    I like both
-
-                </td>
-
-                <td id="rightField" onclick="if(finishFlag==0) sortList(1);" rowspan="2" style="text-align:center;">
-                </td>
-
-            </tr>
-
-            <tr>
-
-                <td class="middleField" onclick="if(finishFlag==0) sortList(0);" style="text-align:center;">
-
-                    no opinion
-
-                </td>
-
-            </tr>
-
-        </tbody>
-    </table>
-
-    <br><br>
-
-    <div id="resultField" style="text-align: center;">
-
-        <br>
-
-    </div>
-
-    <script>
-        initList();
-        showImage();
-    </script>
-    <p class="other">
-        <center>
-            <small><br /><br />affiliated with the easy life discord.<br /><br /><a
-                    href="http://discord.gg/easy-life/">created by rae</a>.
-            </small>
-        </center>
-    </p>
+  <script>
+    initList();
+    showImage();
+  </script>
+  <p class="other">
+    <center>
+      <small>
+        <br /><br />
+        affiliated with the <a href="https://discord.gg/easy-life/">easy life discord</a>.
+        <br /><br />
+        <a href="https://twitter.com/imaginerae">created by rae</a>.
+      </small>
+    </center>
+  </p>
 </body>
 
 </html>
